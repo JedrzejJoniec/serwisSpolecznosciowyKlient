@@ -1,0 +1,22 @@
+.card{
+  background-color: #454545;
+}
+.follow{
+  font-weight: bold; background-color: dodgerblue; color: white; border-width: 0; border-radius: 5px;
+}
+.block:hover {
+  background-color: #656565;
+}
+.block{
+  font-weight: bold; background-color: #555555; color: white; border-width: 0; border-radius: 5px;
+}
+.follow:hover{
+  background-color: #2fa1ff;
+}
+.username{
+  color: white;
+  text-decoration: none;
+}
+.username:hover{
+  text-decoration: underline;
+}

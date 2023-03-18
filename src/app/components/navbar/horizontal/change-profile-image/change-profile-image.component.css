@@ -1,0 +1,30 @@
+.img_container {
+    position:relative;
+    display:inline-block;
+    text-align:center;
+  }
+  .add-post {
+    border-width: 0;
+    font-weight: bold;
+    display: block;
+    width: 48%;
+    color: #959595;
+    border-radius: 5px;
+    text-align: center;
+    height: 4vh;
+    background-color: inherit;
+  }
+  .add-post:hover {
+    background-color:  #505050;
+  }
+  .apply {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  

@@ -1,0 +1,68 @@
+<li class="nav-item">
+          
+    <div class="dropdown">
+
+      <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" (click)="this.unSeenMessages = 0" aria-expanded="false"
+              style="background-color: inherit; border-width: 0" type="button"><i class="material-icons" style="color: white;
+    font-size: 20px; vertical-align: text-bottom"> chat</i><span class='badge badge-warning' *ngIf="unSeenMessages != 0" id='lblCartCount'>{{unSeenMessages}} </span></button>
+
+      <div class="dropdown-menu dropdown-menu-end scrollable-menu"  aria-labelledby="dropdownMenuButton3" style="right: 0; left: auto; width: 15vw;;
+          text-align: center; background-color: #202020;">
+        <p *ngIf="messagesNotifications.length === 0" style="color: white" class="mt-3"> <strong> No messages found </strong></p>
+        <ul *ngFor="let messagesNotification of messagesNotifications" style="left:0;" class="d-flex flex-column align-items-center">
+          <a class="dropdown-item h-25 pt-2 "  [ngClass]="{'notification-seen' : messagesNotification.seen, 'notification' : !messagesNotification.seen}"
+>
+            <div  class="d-flex flex-column">
+              <span (click)="setSeenMessages(messagesNotification.author); this.receiver = messagesNotification.author; 
+              getChatMessages(messagesNotification.author); box.style.display = 'block';messageContainer.scrollTop = messageContainer.scrollHeight;"> 
+              <strong>{{messagesNotification.author}}</strong> wrote to you!</span>
+              <span style="font-size: 10px"> {{messagesNotification.date}} </span>
+            </div>
+          </a>
+        </ul>
+
+      </div>
+
+    </div>
+  
+  </li>
+
+  <div #box style="display: none;" class="chat-popup" id="myForm" >
+    <form  class="form-container">
+      <div class="d-flex flex-row" style="  border-bottom: 1px solid #606060;">
+        <h3 routerLink="/user/{{this.receiver}}" routerLinkActive="active"> {{receiver}}</h3>
+        <a class="close" (click)="box.style.display = 'none'"> </a>
+      </div>
+  
+      <div #messageContainer class="messages-container">
+        <ul class="navbar-nav" *ngFor="let message of messages" (load)="messageContainer.scrollTop = messageContainer.scrollHeight;">
+  
+          <li class="nav-item  d-flex flex-row align-items-center" data-toggle="popover" data-trigger="hover" title="{{message.date}}"
+              [ngClass]="(message.author === receiver) ? 'notLoggedUserMessage': 'loggedUserMessage' " >
+                {{message.text}}
+          </li>
+        </ul>
+      </div>
+    
+      <textarea #boxTextArea placeholder="Type message.." class="msg" (keyup.enter)="
+      addMessage(boxTextArea.value); 
+      sendNotificationMessage(boxTextArea.value);
+      boxTextArea.value = '';"
+    >
+    </textarea>
+  
+    </form>
+  </div>
+  
+  <nav class="nav contacts">
+    <p style="font-size: 30px; margin-left: 3vw; height: 2vh; margin-bottom: 3vh;" > Contacts </p>
+    <ul class="navbar-nav" *ngFor="let user of usersInContacts">
+      <li class="nav-item contact d-flex flex-row align-items-center" (click)="box.style.display = 'block';
+      this.receiver = user.username; getChatMessages(user.username); messageContainer.scrollTop = messageContainer.scrollHeight;">
+        <img src="{{user.image}}" width="45" height="45" class="rounded-circle ms-2">
+        <p class="ms-1 mt-3">{{user.username}} </p>
+      </li>
+  
+    </ul>
+  
+  </nav>

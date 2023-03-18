@@ -1,0 +1,37 @@
+<div class="container mb-5" style="margin-top: 4%;">
+    <div class="row d-flex align-items-center justify-content-center" >
+  
+      <div class="col-md-6" >
+  
+  <form [formGroup]="formData" >
+  
+      <label >Register</label>
+      <div class="column d-flex flex-column justify-content-center" style="margin-top: 5%" >
+      <div class="form-field">
+        <p style="color: greenyellow;margin-left: 2.3%; position:absolute;" *ngIf="registerCompleted"> You have successfully registered </p>
+        <input name="username" formControlName="username" placeholder="Username">
+        <p style="color: red;margin-left: 2.3%; position:absolute;" *ngIf="errorUsername"> This username is already taken </p>
+      </div>
+
+      <div class="form-field">
+        <input name="password" formControlName="password"
+               type="password" placeholder="Password">
+               <p style="color: red;margin-left: 2.3%; position:absolute;" *ngIf="errorPassword"> Passwords are not the same</p>
+      </div>
+      <div class="form-field">
+        <input name="password" formControlName="passwordRepeat"
+               type="password" placeholder="Repeat password">
+               <p style="color: red;margin-left: 2.3%; position:absolute;" *ngIf="errorEmptyFields"> Fields cannot be empty</p>
+      </div>
+    
+      <div class="form-buttons">
+        <button class="button button-primary"
+                (click)="submitForm();">Sign up</button>
+      </div>
+      <p> Already have account? <a routerLink="/" routerLinkActive="active"> Sign in</a></p>
+      </div>
+  
+  </form>
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,218 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+body {
+  background-color: #101010;
+  color: white;
+
+}
+li {
+  list-style-type: none;
+}
+
+.navbar{
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  border-color: white;
+  border-width: 0;
+}
+
+.container-fluid{
+  width: 100%;
+
+}
+.posts-menu{
+  z-index: 1;
+  position: fixed;
+  top: 35%;
+  left: 0;
+  width: 20%;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.contacts{
+  z-index: 1;
+  position: fixed;
+  top: 33%;
+  right: 0;
+  width: 13%;
+  max-height: 63%;
+  font-weight: bold;
+  font-size: 22px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.contact{
+  width: 20vw;
+  height: 6vh;
+  min-width: 100%;
+  font-size: 20px;
+}
+.contact:hover{
+  background-color: #303030;
+}
+
+.change-site{
+  height: 70px;
+  padding-top: 17px;
+}
+.change-site:hover{
+  color: #909090;
+  border-width: 0;
+}
+.btn:hover{
+  background-color: white;
+}
+span {
+  font-size: 16px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #909090!important;
+  font-size: 15px;
+}
+.info{
+  font-weight: bold;
+  font-size: 34px;
+}
+
+.card{
+  background-color: #454545;
+}
+.follow{
+  font-weight: bold; background-color: dodgerblue; color: white; border-width: 0; border-radius: 5px;
+}
+.block:hover {
+  background-color: #656565;
+}
+.block{
+  font-weight: bold; background-color: #555555; color: white; border-width: 0; border-radius: 5px;
+}
+.follow:hover{
+  background-color: #2fa1ff;
+}
+.username{
+  color: white;
+  text-decoration: none;
+}
+.username:hover{
+  text-decoration: underline;
+}
+/* The popup chat - hidden by default */
+.chat-popup {
+  position: fixed;
+  bottom: 0.5vh;
+  right: 0.5vw;
+  border: none;
+  z-index: 9;
+  height: 45%;
+  width: 16%;
+  border-radius: 5px;
+  background-color: #101010;
+}
+
+/* Add styles to the form container */
+
+.messages-container{
+  height: 77%;
+  max-height: 77%;
+  overflow-y: auto;
+}
+.loggedUserMessage {
+  height: 100%;
+  max-width: 70%;
+  width: max-content;
+  border-radius: 10px;
+  background-color: #2fa1ff;
+  color: white;
+  word-break: break-all;
+  margin-top: 0.5vh;
+  padding: 0.3vw;
+  margin-left: auto;
+  margin-right: 0.3vw;
+}
+.notLoggedUserMessage{
+  background-color: #606060;
+  height: 100%;
+  max-width: 70%;
+  width: max-content;
+  border-radius: 10px;
+  color:white;
+  word-break: break-all;
+  margin-top: 0.5vh;
+  padding: 0.3vw ;
+}
+.msg{
+  height: 10%;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #656565;
+  resize: none;
+  border: none;
+  margin-top: 3%;
+}
+/* Full-width textarea */
+.form-container {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  resize: none;
+  height: 100%;
+  background-color: #303030;
+}
+
+/* When the textarea gets focus, do something */
+.form-container textarea:focus {
+  background-color: #ddd;
+  outline: none;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #303030;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.close {
+  top: 1vh;
+  position: absolute;
+  right: 0.5vw;
+  width: 22px;
+  height: 22px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 23px;
+  width: 4px;
+  background-color: #999999;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

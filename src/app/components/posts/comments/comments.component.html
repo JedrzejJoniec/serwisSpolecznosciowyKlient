@@ -1,0 +1,50 @@
+
+<div class="comments">
+  <hr>
+  <ul *ngFor="let comment of post.comments" >
+    <div class="d-flex flex-row mb-2">
+      <img src="{{comment.userImage}}" class="rounded-image">
+      <div class="d-flex flex-column ml-2">
+        <div class="d-flex flex-row mt-1">
+          <a class="fonts " routerLink="/user/{{comment.username}}" routerLinkActive="active">{{comment.username}}</a>
+          <span class="date mt-1">{{comment.date}} </span>
+        </div>
+        <span class="comment-text">{{comment.body}}</span>
+        <img src="{{comment.image}}" class="img-fluid w-75" data-toggle="modal" data-target="#imageModal" (click)="sendCommentImage(comment.image)">
+        <div class="d-flex flex-row align-items-center status">
+          <small [style.color]="comment.liked  ? 'DodgerBlue' : '#959595'" (click)="like(comment); sendNotification(comment, 'like', 'comment')">{{comment.liked ? 'You like it!' : 'Like'}}</small>
+          <small (click)="showAddComment(comment)">Reply</small>
+          <small (click)="sendCommentReactions(comment.reactions)" data-toggle="modal" data-target="#likesModal">{{comment.reactions.length}} likes</small>
+          <small *ngIf="comment.comments.length > 0" (click)="showComments(comment);"> {{comment.showComments ? 'Hide' : 'Show' }}  Answers {{comment.comments.length}}</small>
+        </div>
+      </div>
+      <div *ngIf="comment.userId === userId" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: inherit; border-width: 0">
+          <i class="material-icons" style="color: white; font-size: 20px; vertical-align: text-bottom"> more_horiz</i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="top: 3em; right: 0; left: auto; width: 15vw;
+              height: 10vh; text-align: center; background-color: #c5c5c5;">
+
+          <a class="dropdown-item h-50 pt-2" href="#" data-toggle="modal" data-target="#editModal" (click)="sendComment(comment)"><span>Edit comment</span></a>
+          <a class="dropdown-item h-50 pt-2" href="#"  (click)="removePost(comment.id)"><span>Delete comment</span></a>
+
+        </div>
+      </div>
+    </div>
+
+   <app-answers [hidden]="!comment.showComments" [comment]=comment (answerInEdit)="sendComment($event)" (answerReactions)="sendCommentReactions($event)" (answerImageEdit)="sendCommentImage($event)"> </app-answers>
+
+    <div class="comment-input mt-2 ms-5 row" [hidden]="!comment.showAddComment">
+      <input #content2 type="text" placeholder="Write answer" (keyup.enter)="addComment(comment, content2.value); sendNotification(comment,'comment', 'comment')" class="form-control" style="width: 80%"/>
+      <button class="add-post me-1" style="width: 19%"> <label for="apply{{comment.id}}" ><input type="file" name="" (change)="loadImage($event, comment)" class="apply" id="apply{{comment.id}}" accept="image/*" >
+        <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
+        Get file </label> </button>
+
+      <div class="mt-2 img_container w-50" *ngIf="comment.loadedImage != null">
+        <img src="{{comment.loadedImage}}" class="img-fluid" >
+        <button class="button" (click)="comment.loadedImage = null">X</button>
+      </div>
+    </div>
+
+  </ul>
+</div>

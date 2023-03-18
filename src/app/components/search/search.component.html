@@ -1,0 +1,38 @@
+
+
+
+
+
+<div class="container mt-4 mb-3" style="height: 5%">
+<div class=" d-flex justify-content-center">
+<div class="col-md-6 mt-5 tab">
+
+<button href="#users" id="users" class="users active" aria-controls="home" role="tab" data-toggle="tab" data-target="#home" type="button" aria-selected="true">Users</button>
+  <button href="#posts" id="posts"  class="posts"  aria-controls="profile" role="tab" data-toggle="tab" data-target="#profile" type="button" aria-selected="true">Posts</button>
+
+</div>
+</div>
+</div>
+<div>
+
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="home"><p>
+      <app-users [id]=id> </app-users>
+
+    </div>
+    <div class="tab-pane" id="profile">
+      <app-posts [id]=id> </app-posts>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+

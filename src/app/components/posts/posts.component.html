@@ -1,0 +1,80 @@
+
+<app-post-reactions [reactions]=postReactions > </app-post-reactions>
+
+<app-edit [image]=image  [bodyInEdit]=bodyInEdit [postId]=postId> </app-edit>
+
+<app-image [image]=imageEdit> </app-image>
+
+
+<div class="container mb-5" style="margin-top: 5%;">
+  <div class="row d-flex align-items-center justify-content-center" >
+
+    <div class="col-md-6" >
+
+      <add-post *ngIf="this.viewOption === 'allPosts'"> </add-post>
+
+      <li *ngFor="let post of posts">
+        <div class="card">
+          <div class="d-flex justify-content-between p-2 px-2">
+            <div class="d-flex flex-row user-image">
+              <img src="{{post.userImage}}" width="55" height="55" class="rounded-circle">
+              <div class="d-flex flex-column ml-2 mt-1">
+                <a routerLink="/user/{{post.username}}" routerLinkActive="active" class="username caption">{{post.username}}</a>
+                <span class="date">{{post.date}} </span>
+              </div>
+            </div>
+            <div *ngIf="post.userId === userId" class="dropdown mt-2">
+              <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: inherit; border-width: 0">
+                <i class="material-icons" style="color: white; font-size: 20px; vertical-align: text-bottom"> more_horiz</i>
+              </button>
+              <div class="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="width: 15vw;
+                          right: 0; left:auto; height: 10vh; text-align: center; background-color: #c5c5c5;">
+
+                <a class="dropdown-item h-50 pt-2" href="#" data-toggle="modal" data-target="#editModal" (click)="addToEdit(post); "><span>Edit post</span></a>
+                <a class="dropdown-item h-50 pt-2" href="#"  (click)="removePost(post.id)"><span>Delete post</span></a>
+
+              </div>
+            </div>
+          </div>
+          <span class="text-justify ms-2">{{post.body}}</span>
+          <img src="{{post.image}}" (click)="imageEdit = post.image" class="img-fluid" data-toggle="modal" data-target="#imageModal" >
+          <div class="p-2">
+
+            <div class="d-flex justify-content-between align-items-center ">
+              <div class="d-flex flex-row muted-color" (click)="showReactions(post.reactions)" data-toggle="modal" data-target="#likesModal">  <span class="caption">{{post.reactions.length}} likes</span> </div>
+              <div class="d-flex flex-row muted-color" (click)="showComments(post)">  <span class="caption">{{post.comments.length}} comments</span> </div>
+
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+              <button class="post-button" [style.color]="post.liked  ? 'DodgerBlue' : '#959595'" (click)="like(post); sendNotification(post, 'like', 'post')">  <i class="material-icons" [style.color]="post.liked  ? 'DodgerBlue' : '#959595'" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > thumb_up</i> <span> {{post.liked ? 'You like it!' : 'Like it!'}}</span> </button>
+              <button class="post-button" (click)="showAddComment(post)"> <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > comment</i> <span> Comment</span> </button>
+              <button class="post-button"> <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > share</i> <span> Share</span> </button>
+            </div>
+            
+            <app-comments [post]=post [hidden]="!post.showComments" (commentInEdit)="addToEdit($event)" (commentReactions)="showReactions($event)" (commentImageEdit)="setImage($event)"> </app-comments>
+
+            <div class="comment-input mt-2" [hidden]="!post.showAddComment">
+              <div class="d-flex flex-row">
+                <input #content3 type="text" placeholder="Write comment" (keyup.enter)="addComment(post, content3.value); sendNotification(post,'comment', 'post')" class="form-control w-75">
+                <button class="add-post w-25"> <label for="apply{{post.id}}" ><input type="file" name="" (change)="loadImage($event, post);" class="apply" id="apply{{post.id}}" accept="image/*" >
+                  <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
+                  Get file </label> </button>
+              </div>
+              <div class="mt-2 img_container w-50" *ngIf="post.loadedImage != null">
+                <img src="{{post.loadedImage}}" class="img-fluid" >
+                <button class="button" (click)="post.loadedImage = null">X</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </li>
+
+    </div>
+    <div class="col-md-7 align-self-center" *ngIf="posts.length === 0"  style="margin-top: auto">
+      <p class="info" style="text-align: center"> No posts found</p>
+    </div>
+  </div>
+</div>
+

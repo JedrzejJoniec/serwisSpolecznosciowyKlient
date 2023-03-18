@@ -1,0 +1,64 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+  }
+  .notification-seen:hover{
+    background-color: #303030;
+  }
+  .notification:hover{
+    background-color: #505050;
+  }
+  .notification {
+    background-color: #404040;
+    color: white;
+    margin-right: 30px;
+    border-width: 0;
+    border-radius: 5px;
+  }
+  .notification-seen{
+    background-color: #202020;
+    color: white;
+    margin-right: 30px;
+    border-width: 0;
+    border-radius: 5px;
+  
+  }
+  .badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+  }
+  .label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+  font-size: 12px;
+  background: #ff0000;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+}
+.menu-button{
+  color: white;
+  border-width: 0;
+  border-radius: 5px;
+
+}
+.menu-button:hover {
+  background-color: #505050;
+}
+.apply {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

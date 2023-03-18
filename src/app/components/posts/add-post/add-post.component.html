@@ -1,0 +1,26 @@
+
+
+<div class="container" >
+  <div class="row d-flex align-items-center justify-content-center" >
+        <div class="card p-2">
+          <textarea #content1 class="form-control" rows="3" placeholder="Write post" (keyup.enter)="addPost(content1.value)" ></textarea>
+          <div class="mt-2 img_container w-50" *ngIf="image != null">
+            <img src="{{image}}" class="img-fluid " >
+            <button class="button" (click)="image = null">X</button>
+          </div>
+          <hr>
+          <div class="row d-flex align-items-center justify-content-center p-0">
+            <button class="add-post"> <label for="apply2" > <input  type="file" name="" (change)="choseImage($event)" class="apply" id="apply2" accept="image/*">
+              <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
+              Get file </label> </button>
+            <button class="add-post"  (click)="addPost(content1.value)"> <i class="material-icons" style="color: #959595; font-size: 20px; vertical-align: text-bottom" > post_add</i>
+              Add post</button>
+          </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+

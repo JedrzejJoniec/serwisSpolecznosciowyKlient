@@ -1,0 +1,23 @@
+<div class="container mt-5">
+
+    <!-- Modal -->
+    <div class="modal fade " id="changeImage" role="dialog" >
+      <div class="modal-dialog modal-dialog-centered">
+  
+        <!-- Modal content-->
+        <div class="modal-content bt" style="background-color: #454545">
+  
+          <div class="modal-body">
+            <img src="{{chosenImage}}" class="img-fluid" >
+            <div class="d-flex flex-row mt-3">
+              <button type="button" class="btn add-post" data-dismiss="modal" (click)="changeProfileImage()">Change</button>
+            <button type="button" class="btn add-post"><label for="apply3" ><input type="file" name=""  class="apply" id="apply1" accept="image/*" (change)="newProfileImage($event)">
+              <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
+              Get file </label> </button>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

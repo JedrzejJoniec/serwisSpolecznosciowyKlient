@@ -1,0 +1,31 @@
+<div class="container mt-5">
+
+    <!-- Modal -->
+    <div class="modal fade " id="editModal" role="dialog">
+      <div class="modal-dialog modal-dialog-centered">
+  
+        <!-- Modal content-->
+        <div class="modal-content bt" style="background-color: #454545" >
+          <div class="modal-body">
+            <textarea [(ngModel)]= 'textAreaText' class="w-100" style="background-color: inherit; color: white; border-width: 0" placeholder="Edit post"> </textarea>
+            <div class="img_container" *ngIf="image != null">
+              <img src="{{image}}" class="img-fluid" >
+              <button class="button" (click)="image = null;">X</button>
+            </div>
+            <hr>
+            <div class="d-flex flex-row">
+              <button class="add-post" (click)="edit(this.textAreaText);"> <i class="material-icons" style="color: #959595; font-size: 20px; vertical-align: text-bottom" > edit</i>
+                Edit post</button>
+  
+              <button class="add-post"> <label for="apply10" ><input type="file" name=""  class="apply" id="apply10" accept="image/*" (change)="choseImage($event)">
+                <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
+                Get file </label> </button>
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  
+  </div>

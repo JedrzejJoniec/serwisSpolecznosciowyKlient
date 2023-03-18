@@ -1,0 +1,161 @@
+
+body{
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+.card{
+  border:none;
+  background-color: #303030;
+  margin-bottom: 20px;
+}
+.ellipsis{
+  color: #a09c9c
+}
+hr{
+  color: #a09c9c;
+  margin-top: 4px;
+  margin-bottom: 8px
+}
+.muted-color{
+  color: #a09c9c;
+  font-size: 13px
+}
+
+.rounded-image{
+  margin-right: 5px;
+  border-radius: 50%!important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+}
+.username{
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 18px;
+
+  color: white;
+  text-decoration: none;
+}
+.username:hover{
+  text-decoration: underline;
+}
+
+.comment-text{
+  font-size: 16px
+}
+.status small{
+  margin-right: 10px;
+  color: #a9a9a9;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.comment-input{
+  position: relative;
+}
+
+.caption:hover, small:hover {
+  text-decoration: underline;
+}
+
+.post-button {
+  height: 35px;
+  border-radius: 5px;
+  width: 33%;
+  border-width: 0;
+  color: #959595;
+  background-color: inherit;
+  font-weight: bold;
+}
+.post-button:hover {
+  background-color:  #505050;
+}
+.fonts{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+.fonts:hover{
+   text-decoration: underline;
+ }
+.name{
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+.name:hover{
+  text-decoration: underline;
+}
+
+.date{
+  font-size: 12px;
+  margin-left: 3px;
+}
+.add-post {
+  border-width: 0;
+  font-weight: bold;
+  display: block;
+  width: 48%;
+  color: #959595;
+  border-radius: 5px;
+  text-align: center;
+  height: 4vh;
+  background-color: inherit;
+}
+.add-post:hover {
+  background-color:  #505050;
+}
+.apply {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.form-control:focus{
+  color: #495057;
+  background-color: #fff;
+  border-color: #8bbafe;
+  outline: 0;
+  box-shadow: none
+}
+.form-control{
+  border-radius: 26px;
+  background-color: #505050;
+  border-width: 0;
+}
+.img_container {
+  position:relative;
+  display:inline-block;
+  text-align:center;
+}
+.button {
+  background-color: firebrick;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border-width: 0;
+  position:absolute;
+  top:0;
+  right:0;
+}
+
+
+
+
+
+
+
+
+
+

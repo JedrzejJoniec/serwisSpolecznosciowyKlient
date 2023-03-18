@@ -1,0 +1,16 @@
+.follow-button{
+  font-weight: bold; font-size: 18px; background-color: dodgerblue; color: white; border-width: 0; border-radius: 5px; width: 60%; width: fit-content;
+}
+.block-button:hover {
+  background-color: #656565;
+}
+.block-button{
+  font-weight: bold; font-size: 18px; background-color: #555555; color: white; border-width: 0; border-radius: 5px; width: 50%;
+}
+.follow-button:hover{
+  background-color: #2fa1ff;
+}
+.buttons{
+  height: 4vh;
+  width: 9vw;
+}

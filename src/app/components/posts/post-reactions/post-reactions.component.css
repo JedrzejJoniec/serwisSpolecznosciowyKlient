@@ -1,0 +1,21 @@
+.username{
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 18px;
+  
+    color: white;
+    text-decoration: none;
+  }
+  .username:hover{
+    text-decoration: underline;
+  }
+  .card{
+    border:none;
+    background-color: #303030;
+    margin-bottom: 20px;
+  }
+  .date{
+    font-size: 12px;
+    margin-left: 3px;
+  }
+  
