@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth/auth.service";
-import {GetService} from "../services/get/get.service";
+import {AuthService} from "../../services/auth/auth.service";
+import {GetService} from "../../services/get/get.service";
 
 @Component({
   selector: 'app-login',
@@ -21,10 +21,8 @@ export class LoginComponent{
   constructor(private authService: AuthService, private router: Router, private getService: GetService) {
   }
   async submitForm() {
-
     const login = await this.authService
       .login(this.formData.get('username')?.value, this.formData.get('password')?.value)
-    console.log(login + "ELO")
       if (login === "succesful") {
         this.getService.getLoggedInUser().subscribe((user) => {
           sessionStorage.setItem("username", user.username);
@@ -35,7 +33,6 @@ export class LoginComponent{
 
       }
       else {
-        console.log("ELOOO")
         this.showError = true;
       }
       

@@ -1,7 +1,8 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Message } from 'src/app/model/message-model';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { GetService, Message } from 'src/app/services/get/get.service';
+import { GetService} from 'src/app/services/get/get.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { MessagesUserProfileSharedService } from 'src/app/services/sharedMessagesUserProfile/messages-user-profile-shared.service';
 
@@ -68,7 +69,6 @@ export class MessagesComponent {
   )
   this.getService.getContacts().subscribe(contacts => {
     contacts.forEach(contact => {
-      console.log(contact + " SIEMANO")
       this.getService.getUser(contact).subscribe(user => {
         this.getService.getUserImage(user.id).subscribe(userImage => {
           this.createUserImageFromBlob(userImage, user);

@@ -1,9 +1,12 @@
 import {Component, ElementRef, Injectable, Input, OnInit, ViewChild} from '@angular/core';
-import {Comment, GetService, Post, Reaction, User} from "../../services/get/get.service";
+import {GetService} from "../../services/get/get.service";
 import {PostService} from "../../services/post/post.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { PostReactionsComponent } from 'src/app/components/posts/post-reactions/post-reactions.component';
 import { PostsActionsService } from 'src/app/services/posts-actions/posts-actions.service';
+import { Post } from 'src/app/model/post-model';
+import { Reaction } from 'src/app/model/reaction-model';
+import { Comment } from 'src/app/model/comment-model';
 
 
 
@@ -59,7 +62,6 @@ export class PostsComponent extends PostsActionsService implements OnInit{
       break;  
 
       case 'search': { 
-        console.log("SEARCH")
         this.getService.searchPosts(this.id).subscribe(posts => {
           this.loadPosts(posts);
         });
@@ -105,8 +107,8 @@ export class PostsComponent extends PostsActionsService implements OnInit{
       this.loadAnswers(comment);
     });
   }
-  loadAnswers(comment : Comment) {
-    comment.comments.forEach((answer) => {
+  loadAnswers(comment : any) {
+    comment.comments.forEach((answer: any) => {
       this.loadImagesAndReactions(answer);
     });
   }

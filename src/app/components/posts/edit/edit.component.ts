@@ -14,17 +14,17 @@ export class EditComponent {
   @Input() bodyInEdit: any;
   @Input() postId: any;
   textAreaText: any;
-  imageToSend: any;
+  imageToSend: any = null;
   
   ngOnChanges() {
     
     this.textAreaText = this.bodyInEdit;
-    console.log(this.bodyInEdit + "BODYY w edit")
   }
 
 
   choseImage(event: any) {
     let image = event.target.files[0];
+    this.imageToSend = event.target.files.item(0);
     let fileReader = new FileReader();
     fileReader.onload = () => {
       this.image = fileReader.result;
@@ -33,8 +33,19 @@ export class EditComponent {
   }
 
   edit(body: string) {
-    console.log(body + "BODY");
-    this.postService.edit(body, this.postId, this.imageToSend);
+    console.log(this.image)
+    console.log(this.imageToSend)
+    if((this.image === null && this.imageToSend !== undefined) || (this.image === null && this.imageToSend === undefined) || (this.image !== null && this.imageToSend !== undefined) ){
+  
+      this.postService.edit(body, this.postId, this.imageToSend);
+    }
+
+    
+
+    
+
+  }
+  reload () {
     window.location.reload();
   }
 

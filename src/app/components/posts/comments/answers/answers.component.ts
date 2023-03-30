@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Post, Reaction } from 'src/app/services/get/get.service';
+import { Post } from 'src/app/model/post-model';
+import { Reaction } from 'src/app/model/reaction-model';
 import { PostService } from 'src/app/services/post/post.service';
 import { PostsComponent } from '../../posts.component';
 
@@ -17,11 +18,9 @@ export class AnswersComponent extends PostsComponent{
 
   sendAnswer(comment: Post) {
     this.answerInEdit.emit(comment) 
-    console.log("w commencie" + comment.body)
   }
   sendAnswerReactions(reactions: Reaction[]) {
     this.answerReactions.emit(reactions) 
-    console.log(reactions[0] + " REACTIN ANSWER")
   }
   sendAnswerImage(image: any[]) {
     this.answerImageEdit.emit(image) 

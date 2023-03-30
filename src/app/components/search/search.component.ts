@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {GetService, Post, Reaction, User} from "../../services/get/get.service";
+import {GetService} from "../../services/get/get.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {PostService} from "../../services/post/post.service";
 import {PostsComponent} from "../posts/posts.component";
+import { User } from 'src/app/model/user-model';
 
 @Component({
   selector: 'app-search',

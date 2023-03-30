@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsComponent } from '../posts.component';
-import { GetService, User } from '../../../services/get/get.service';
+import { GetService} from '../../../services/get/get.service';
 import { PostService } from '../../../services/post/post.service';
 import { PostsActionsService } from 'src/app/services/posts-actions/posts-actions.service';
 

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Message, Post, User} from "../get/get.service";
+import {environment} from "../../../environments/environment";
+import { Post } from 'src/app/model/post-model';
 
 
 @Injectable({
@@ -9,7 +10,12 @@ import {Message, Post, User} from "../get/get.service";
 })
 export class PostService {
 
-  posts: Observable<Post[]> | undefined;
+  postsUrl: string = environment.postsUrl;
+  securityUrl: string = environment.securityUrl;
+  brokerUrl: string = environment.brokerUrl;
+  chatUrl: string = environment.chatUrl;
+
+  posts: Observable<Post[]>;
 
   token: any = localStorage.getItem("token");
   constructor(private httpClient: HttpClient) {
@@ -26,7 +32,7 @@ export class PostService {
       token = "pusty";
     }
 
-    fetch("http://localhost:8080/myPosts/post/" + id,{
+    fetch(this.postsUrl + "/myPosts/post/" + id,{
         headers:{
           Authorization: token
         },
@@ -41,7 +47,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8080/passwordChange",{
+    fetch(this.postsUrl + "/passwordChange",{
       headers:{
         Authorization: token
       },
@@ -59,7 +65,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8080/user/image/",{
+    fetch(this.postsUrl + "/user/image/",{
         headers:{
           Authorization: token
         },
@@ -74,7 +80,7 @@ export class PostService {
     const body = {
       username, password
     }
-    return fetch("http://localhost:8082/login",{
+    return fetch(this.securityUrl + "/login",{
         method: 'POST',
         body: JSON.stringify(body)
       }
@@ -83,7 +89,7 @@ export class PostService {
   public async register(username:any, password:any){
 
     const body = password;
-    return fetch("http://localhost:8082/users/register/" + username,{
+    return fetch(this.securityUrl + "/users/register/" + username,{
         method: 'POST',
         body: body
       }
@@ -91,7 +97,7 @@ export class PostService {
       
   }
   public addNotification(postAuthor:String, type:String, postId:number, object:String) {
-    fetch("http://localhost:8081/addNotification?type=" + type + "&author=" +  sessionStorage.getItem("username") + "&username=" + postAuthor + "&id=" + postId + "&object=" + object, {
+    fetch(this.brokerUrl + "/addNotification?type=" + type + "&author=" +  sessionStorage.getItem("username") + "&username=" + postAuthor + "&id=" + postId + "&object=" + object, {
         method: 'POST',
       }
     )
@@ -99,7 +105,7 @@ export class PostService {
 
   public addNotificationMessage(text:String, receiver:string) {
     let author = sessionStorage.getItem("username");
-    fetch("http://localhost:8081/addMessageNotification?text=" + text + "&author=" + author + "&receiver=" + receiver, {
+    fetch(this.brokerUrl +"/addMessageNotification?text=" + text + "&author=" + author + "&receiver=" + receiver, {
         method: 'POST',
       }
     )
@@ -110,7 +116,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch('http://localhost:8083/rest/' + receiver + '/addMessage?author=' + sessionStorage.getItem("username"), {
+    fetch(this.chatUrl +'/rest/' + receiver + '/addMessage?author=' + sessionStorage.getItem("username"), {
       headers:{
         Authorization: token
       },
@@ -124,7 +130,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8081/notifications?username=" +  sessionStorage.getItem("username"), {
+    fetch(this.brokerUrl + "/notifications?username=" +  sessionStorage.getItem("username"), {
       headers:{
         Authorization: token
       },
@@ -137,7 +143,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8083/setMessagesSeen?author=" +  sessionStorage.getItem("username") + "&receiver=" + author, {
+    fetch(this.chatUrl + "/setMessagesSeen?author=" +  sessionStorage.getItem("username") + "&receiver=" + author, {
       headers:{
         Authorization: token
       },
@@ -156,7 +162,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8080/posts/file",{
+    fetch(this.postsUrl + "/posts/file",{
       headers:{
         Authorization: token
       },
@@ -173,7 +179,7 @@ export class PostService {
     let options = {
       headers: reqHeader
     };
-    return this.httpClient.post<any>("http://localhost:8080/post/" + id + "/reactions", {});
+    return this.httpClient.post<any>(this.postsUrl + "/post/" + id + "/reactions", {});
   }
 
   public addComment(id:any, body:any, image:any){
@@ -184,7 +190,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8080/post/" + id + "/comments",{
+    fetch(this.postsUrl +"/post/" + id + "/comments",{
       headers:{
         Authorization: token
       },
@@ -202,7 +208,7 @@ export class PostService {
     let options = {
       headers: reqHeader
     };
-    return this.httpClient.delete<any>("http://localhost:8080/post/" + id + "/reactions");
+    return this.httpClient.delete<any>(this.postsUrl + "/post/" + id + "/reactions");
   }
 
   public removePost(id:any): Observable<any> {
@@ -213,7 +219,7 @@ export class PostService {
     let options = {
       headers: reqHeader
     };
-    return this.httpClient.delete<any>("http://localhost:8080/myPosts/post/" + id);
+    return this.httpClient.delete<any>(this.postsUrl +"/myPosts/post/" + id);
   }
 
   public deleteBlockedUserNotifications(blockedUser:string){
@@ -221,7 +227,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8081/deleteNotifications/" + blockedUser,{
+    fetch(this.brokerUrl + "/deleteNotifications/" + blockedUser,{
       headers:{
         Authorization: token
       },
@@ -235,7 +241,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch("http://localhost:8083/deleteChat/" + blockedUser,{
+    fetch(this.chatUrl + "/deleteChat/" + blockedUser,{
       headers:{
         Authorization: token
       },
@@ -252,7 +258,7 @@ export class PostService {
     let options = {
       headers: reqHeader
     };
-    return this.httpClient.post<any>("http://localhost:8080/users/" + id, relation);
+    return this.httpClient.post<any>(this.postsUrl +"/users/" + id, relation);
   }
 
 
@@ -265,7 +271,7 @@ export class PostService {
     let options = {
       headers: reqHeader
     };
-    return this.httpClient.delete<any>("http://localhost:8080/users/" + id);
+    return this.httpClient.delete<any>(this.postsUrl + "/users/" + id);
   }
 
 

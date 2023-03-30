@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GetService, Post, User } from '../get/get.service';
+import { Post } from 'src/app/model/post-model';
+import { User } from 'src/app/model/user-model';
+import { GetService} from '../get/get.service';
 import { PostService } from '../post/post.service';
 
 @Injectable({
@@ -29,7 +31,7 @@ export class PostsActionsService {
       this.postService.followOrBlock(id, relation).subscribe()
     }
     if (relation === 'block') {
-      console.log("USUWAM")
+  
       this.postService.deleteBlockedUserNotifications(user.username);
       this.postService.deleteChatWithBlockedUser(user.username);
       this.router.navigateByUrl("/allPosts");
@@ -56,7 +58,12 @@ export class PostsActionsService {
   }
   addLikeToLikes(post:Post) {
     const now = new Date();
-    post.reactions.push({ id: 1, user: {id: this.userId, username: 'jedo8', image: null, followed: false}, postId: 1, userImage: null, date: this.formatDate(now)})
+ 
+    let username = sessionStorage.getItem("username")
+    if ( username === null) {
+        username = "username";
+    }
+    post.reactions.push({ id: 1, user: {id: this.userId, username: username, image: null, followed: false}, postId: 1, userImage: null, date: this.formatDate(now)})
     this.getService.getUserImage(9).subscribe(userImage => {
       this.createUserImageFromBlob(userImage, post.reactions[post.reactions.length - 1]);
     })

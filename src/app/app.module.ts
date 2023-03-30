@@ -10,7 +10,7 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
 import { UsersComponent } from './components/users/users.component';
 import { UserProfileComponent } from './components/posts/user-profile/user-profile.component';
 import { SearchComponent } from './components/search/search.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import {LoginGuardService} from "./services/auth/login-guard.service";
 import {AuthService} from "./services/auth/auth.service";
 import {AuthInterceptor} from "./auth.interceptor";
@@ -25,7 +25,7 @@ import { HorizontalComponent } from './components/navbar/horizontal/horizontal.c
 import { MessagesComponent } from './components/navbar/horizontal/messages/messages.component';
 import { ChangePasswordComponent } from './components/navbar/horizontal/change-password/change-password.component';
 import { ChangeProfileImageComponent } from './components/navbar/horizontal/change-profile-image/change-profile-image.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 

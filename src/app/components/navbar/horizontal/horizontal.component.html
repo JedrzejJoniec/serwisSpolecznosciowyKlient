@@ -5,12 +5,12 @@
     <div class="container-fluid" >
   
         <img src="{{profileImage}}" alt="" width="60" height="60" class="d-inline-block rounded-circle" style="background-color: green">
-        <span routerLink="/myProfile" routerLinkActive="active" class="ms-1" style="font-size: 22px; font-weight: bold" > {{getUsername()}} </span>
+        <span class="ms-1" style="font-size: 22px; font-weight: bold" > {{getUsername()}} </span>
   
   
       <div class="search ms-auto mb-2 mb-lg-0" >
         <form class="d-flex" style="margin-left: 504px">
-          <input class="form-control me-2 search" type="search" placeholder="Search" (keydown.enter)="search($event)" style="width: 635px; height: 45px; background-color: #505050; border-width: 0;" aria-label="Search">
+          <input class="form-control me-2 search" type="search" placeholder="Search" (keydown.enter)="search($event)" style="width: 635px; height: 45px; background-color: #505050; border-width: 0; color:white" aria-label="Search">
         </form>
       </div>
   

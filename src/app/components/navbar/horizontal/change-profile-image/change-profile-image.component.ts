@@ -17,7 +17,6 @@ export class ChangeProfileImageComponent {
 
   newProfileImage(event: any) {
     let image = event.target.files[0];
-    console.log(event.target.files.item(0) + " ELOOOO");
     this.chosenImageToSend = event.target.files[0];
     let fileReader = new FileReader();
     fileReader.onload = () => {
@@ -27,8 +26,6 @@ export class ChangeProfileImageComponent {
   }
 
   changeProfileImage() {
-    console.log(this.chosenImage + " chosen")
-    console.log(this.chosenImageToSend + " chosen to send")
     this.postService.changeProfileImage(this.chosenImageToSend);
   }
 }

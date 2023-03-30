@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
-import {GetService, User} from "../../services/get/get.service";
+import {GetService} from "../../services/get/get.service";
 import {Location} from "@angular/common";
 import {PostService} from "../../services/post/post.service";
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/model/user-model';
 
 @Component({
   selector: 'app-users',

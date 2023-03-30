@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from "@angular/core";
 import { Router } from "@angular/router";
+import { Message } from "src/app/model/message-model";
 import { AuthService } from "src/app/services/auth/auth.service";
-import { GetService, Message, Notification } from "src/app/services/get/get.service";
+import { GetService } from "src/app/services/get/get.service";
 import { PostService } from "src/app/services/post/post.service";
+import { Notification } from 'src/app/model/notification-model';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class HorizontalComponent {
 
 
   ngOnInit(): void {
-    this.getService.getNotifications().subscribe((notifications: Array<Notification>) => {
+    this.getService.getNotifications().subscribe((notifications: Array<any>) => {
       this.notifications = notifications;
       this.countUnSeen();
     })
@@ -61,7 +63,6 @@ export class HorizontalComponent {
     }
   }
   search(event:any) {
-    console.log(event.target.value + " eloooo");
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/search', event.target.value]);
     });

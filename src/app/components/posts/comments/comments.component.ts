@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Post, Reaction } from 'src/app/services/get/get.service';
+import { Post } from 'src/app/model/post-model';
+import { Reaction } from 'src/app/model/reaction-model';
 import { PostsComponent } from '../posts.component';
 
 @Component({

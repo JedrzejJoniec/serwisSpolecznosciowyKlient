@@ -49,7 +49,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <button class="post-button" [style.color]="post.liked  ? 'DodgerBlue' : '#959595'" (click)="like(post); sendNotification(post, 'like', 'post')">  <i class="material-icons" [style.color]="post.liked  ? 'DodgerBlue' : '#959595'" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > thumb_up</i> <span> {{post.liked ? 'You like it!' : 'Like it!'}}</span> </button>
               <button class="post-button" (click)="showAddComment(post)"> <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > comment</i> <span> Comment</span> </button>
-              <button class="post-button"> <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > share</i> <span> Share</span> </button>
+              
             </div>
             
             <app-comments [post]=post [hidden]="!post.showComments" (commentInEdit)="addToEdit($event)" (commentReactions)="showReactions($event)" (commentImageEdit)="setImage($event)"> </app-comments>

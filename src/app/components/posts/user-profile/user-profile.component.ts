@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { GetService, User } from 'src/app/services/get/get.service';
+import { User } from 'src/app/model/user-model';
+import { GetService} from 'src/app/services/get/get.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { PostsActionsService } from 'src/app/services/posts-actions/posts-actions.service';
 import { MessagesUserProfileSharedService } from 'src/app/services/sharedMessagesUserProfile/messages-user-profile-shared.service';
