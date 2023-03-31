@@ -38,10 +38,17 @@ export class PostsActionsService {
     }
   }
 
-  removePost(id: any){
+  async removePost(id: any){
+
     this.postService.removePost(id).subscribe(value => {
     })
+  }
+
+  async reload() {
+    const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms));
+    await sleep(500);
     window.location.reload();
+
   }
 
   like(post:Post) {

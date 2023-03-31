@@ -22,8 +22,8 @@
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="top: 3em; right: 0; left: auto; width: 15vw;
             height: 10vh; text-align: center; background-color: #c5c5c5;">
 
-            <a class="dropdown-item h-50 pt-2" href="#" data-toggle="modal" data-target="#editModal" (click)="sendAnswer(answer)"><span>Edit comment</span></a>
-            <a class="dropdown-item h-50 pt-2" href="#"  (click)="removePost(answer.id)"><span>Delete comment</span></a>
+            <a class="dropdown-item h-50 pt-2"  data-toggle="modal" data-target="#editModal" (click)="sendAnswer(answer)"><span>Edit comment</span></a>
+            <a class="dropdown-item h-50 pt-2"  (click)="removePost(answer.id); reload()"><span>Delete comment</span></a>
 
           </div>
         </div>

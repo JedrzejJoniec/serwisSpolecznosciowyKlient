@@ -141,7 +141,6 @@ export class PostsComponent extends PostsActionsService implements OnInit{
 
   addComment(post:any, body:any) {
     this.postService.addComment(post.id, body, this.imageToSend);
-    window.location.reload();
   }
 
   loadImage(event: any, post: any){

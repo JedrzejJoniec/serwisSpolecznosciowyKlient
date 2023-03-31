@@ -41,11 +41,10 @@ export class EditComponent {
     }
 
     
-
-    
-
   }
-  reload () {
+  async reload () {
+    const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms));
+    await sleep(500);
     window.location.reload();
   }
 

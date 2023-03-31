@@ -30,8 +30,8 @@
               <div class="dropdown-menu  dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="width: 15vw;
                           right: 0; left:auto; height: 10vh; text-align: center; background-color: #c5c5c5;">
 
-                <a class="dropdown-item h-50 pt-2" href="#" data-toggle="modal" data-target="#editModal" (click)="addToEdit(post); "><span>Edit post</span></a>
-                <a class="dropdown-item h-50 pt-2" href="#"  (click)="removePost(post.id)"><span>Delete post</span></a>
+                <a class="dropdown-item h-50 pt-2" data-toggle="modal" data-target="#editModal" (click)="addToEdit(post); "><span>Edit post</span></a>
+                <a class="dropdown-item h-50 pt-2" (click)="removePost(post.id); reload()"><span>Delete post</span></a>
 
               </div>
             </div>
@@ -56,7 +56,7 @@
 
             <div class="comment-input mt-2" [hidden]="!post.showAddComment">
               <div class="d-flex flex-row">
-                <input #content3 type="text" placeholder="Write comment" (keyup.enter)="addComment(post, content3.value); sendNotification(post,'comment', 'post')" class="form-control w-75">
+                <input #content3 type="text" placeholder="Write comment" (keyup.enter)="addComment(post, content3.value); sendNotification(post,'comment', 'post'); reload()" class="form-control w-75">
                 <button class="add-post w-25"> <label for="apply{{post.id}}" ><input type="file" name="" (change)="loadImage($event, post);" class="apply" id="apply{{post.id}}" accept="image/*" >
                   <i class="material-icons" style="color: #959595; font-size: 18px; vertical-align: text-bottom" > image</i>
                   Get file </label> </button>

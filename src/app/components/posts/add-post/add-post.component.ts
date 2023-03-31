@@ -24,7 +24,4 @@ export class AddPostComponent extends PostsComponent{
     this.postService.addPost(body, this.imageToSend);
   }
  
-  reload () {
-    window.location.reload();
-  }
 }
