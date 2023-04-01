@@ -11,7 +11,7 @@ Użytkownik po wejściu na adres musi się zalogować
 
 Jeśli nie posiada konta musi się zarejestrować
 
-![alt text](ImagesAPI/register.png)
+![alt text](Images/register.png)
 
 Po pomyślnym zalogowaniu przenosi się na stronę główną gdzie może dodawać swoje posty. Po prawej stronie widoczne są zakładki do których może przejść po kliknięciu w nie
 ![alt text](Images/strona.png)
