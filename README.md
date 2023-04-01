@@ -13,7 +13,7 @@ Jeśli nie posiada konta musi się zarejestrować
 
 ![alt text](Images/register.png)
 
-Po pomyślnym zalogowaniu przenosi się na stronę główną gdzie może dodawać swoje posty
+Po pomyślnym zalogowaniu przenosi się na stronę główną gdzie może dodawać swoje posty. Po prawej stronie widoczne są zakładki do których może przejść po kliknięciu w nie
 ![alt text](Images/strona.png)
 
 Po rozwinięciu przycisku menu może zmienić swoje zdjęcie profilowe/hasło, wyświetlić listę zablokowanych użytkowników, a także się wylogować
