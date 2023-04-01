@@ -32,11 +32,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     let sock = new SockJS(this.brokerUrl + "/stomp");
-// Create a new StompClient object with the WebSocket endpoint
     let client = Stomp.over(sock);
-      // Start the STOMP communications, provide a callback for when the CONNECT frame arrives.
       client.connect({}, (frame: any) => {
-      // Subscribe to "/topic/messages". Whenever a message arrives add the text in a list-item element in the unordered list.
       client.subscribe("/topic/"+ sessionStorage.getItem("username"), (payload: { body: string; }) => {
         let obj: any = JSON.parse(payload.body);
         if (obj.type === "like" || obj.type === "comment") {

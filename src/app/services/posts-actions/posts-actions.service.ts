@@ -4,6 +4,7 @@ import { Post } from 'src/app/model/post-model';
 import { User } from 'src/app/model/user-model';
 import { GetService} from '../get/get.service';
 import { PostService } from '../post/post.service';
+import { LoaderService } from '../loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { PostService } from '../post/post.service';
 export class PostsActionsService {
 
   userId: any = Number(sessionStorage.getItem("id"));
-
-  constructor(protected postService: PostService, protected router:Router, protected getService: GetService, protected route: ActivatedRoute) { }
+  viewOption: any;
+  constructor(protected postService: PostService, protected router:Router, protected getService: GetService, protected route: ActivatedRoute, protected loadingService: LoaderService) { }
 
   sendNotification(post: any, type:String, typeOfNotificatedPost:String) {
     if (post.username != sessionStorage.getItem("username")) {
@@ -22,7 +23,7 @@ export class PostsActionsService {
     }
   }
 
-  followOrBlock(user: User, relation: string) {
+  async followOrBlock(user: User, relation: string) {
     let id = user.id;
     if (user.followed && relation === 'follow') {
       this.postService.unFollow(id).subscribe();
@@ -31,7 +32,6 @@ export class PostsActionsService {
       this.postService.followOrBlock(id, relation).subscribe()
     }
     if (relation === 'block') {
-  
       this.postService.deleteBlockedUserNotifications(user.username);
       this.postService.deleteChatWithBlockedUser(user.username);
       this.router.navigateByUrl("/allPosts");
@@ -39,17 +39,17 @@ export class PostsActionsService {
   }
 
   async removePost(id: any){
-
-    this.postService.removePost(id).subscribe(value => {
+    this.postService.removePost(id)
+    .subscribe(
+      response => {
+      this.loadingService.setLoading(true);
+      if (response.status === 200) {
+        this.loadingService.setLoading(false);
+        window.location.reload()
+      }
     })
   }
 
-  async reload() {
-    const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms));
-    await sleep(500);
-    window.location.reload();
-
-  }
 
   like(post:Post) {
     if (!post.liked) {
@@ -65,13 +65,13 @@ export class PostsActionsService {
   }
   addLikeToLikes(post:Post) {
     const now = new Date();
- 
+    let id = sessionStorage.getItem("id")
     let username = sessionStorage.getItem("username")
     if ( username === null) {
         username = "username";
     }
     post.reactions.push({ id: 1, user: {id: this.userId, username: username, image: null, followed: false}, postId: 1, userImage: null, date: this.formatDate(now)})
-    this.getService.getUserImage(9).subscribe(userImage => {
+    this.getService.getUserImage(id).subscribe(userImage => {
       this.createUserImageFromBlob(userImage, post.reactions[post.reactions.length - 1]);
     })
     post.liked = !post.liked;

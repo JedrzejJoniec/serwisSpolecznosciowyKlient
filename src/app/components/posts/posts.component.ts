@@ -7,6 +7,7 @@ import { PostsActionsService } from 'src/app/services/posts-actions/posts-action
 import { Post } from 'src/app/model/post-model';
 import { Reaction } from 'src/app/model/reaction-model';
 import { Comment } from 'src/app/model/comment-model';
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 
@@ -24,12 +25,10 @@ export class PostsComponent extends PostsActionsService implements OnInit{
   bodyInEdit: any;
   image: any;
   imageToSend: File;
-  viewOption: any;
   postReactions!: PostReactionsComponent
   isBeingEdited: boolean;
   @Input() userProfileName: any;
   @Input() id: any;
-
 
   ngOnInit(): void {
     this.viewOption = this.route.snapshot.data['viewOption'];
@@ -95,6 +94,7 @@ export class PostsComponent extends PostsActionsService implements OnInit{
   }
 
   loadPosts(posts: Post[]) {
+    this.posts = [];
     this.posts = posts;
     this.posts.forEach((post) => {
       this.loadImagesAndReactions(post);
@@ -139,8 +139,14 @@ export class PostsComponent extends PostsActionsService implements OnInit{
     this.imageEdit = image;
   }
 
-  addComment(post:any, body:any) {
-    this.postService.addComment(post.id, body, this.imageToSend);
+  async addComment(post:any, body:any) {
+    this.loadingService.setLoading(true);
+    const addCommentStatus = await this.postService.addComment(post.id, body, this.imageToSend);
+    if (addCommentStatus.status === 200) {
+      this.loadingService.setLoading(false);
+      window.location.reload()
+    }
+
   }
 
   loadImage(event: any, post: any){

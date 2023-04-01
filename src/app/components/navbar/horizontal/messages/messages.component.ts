@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Message } from 'src/app/model/message-model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GetService} from 'src/app/services/get/get.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { MessagesUserProfileSharedService } from 'src/app/services/sharedMessagesUserProfile/messages-user-profile-shared.service';
 
@@ -22,7 +23,7 @@ export class MessagesComponent {
   usersInContacts: any = [];
   @Input() showChatWindow: any;
   
-  constructor(private getService: GetService, private authService: AuthService, private postService: PostService, private router: Router, private messagesUserProfileSharedService : MessagesUserProfileSharedService){
+  constructor(private getService: GetService,private authService: AuthService, private postService: PostService, private router: Router, private messagesUserProfileSharedService : MessagesUserProfileSharedService){
     
     this.messagesUserProfileSharedService.buttonClick.subscribe(username => {
       if (this.box != undefined) {
@@ -99,10 +100,12 @@ export class MessagesComponent {
     this.postService.addMessage(this.receiver, text);
   }
   getChatMessages(member:string) {
-    this.messages = [];
+    
+    this.messages = []; 
     this.getService.getChatMessages(member).subscribe(messages => {
       this.messages = messages;
     });
+
   }
   setSeenMessages(author:string | null) {
     this.postService.setSeenMessages(author);

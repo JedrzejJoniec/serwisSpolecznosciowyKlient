@@ -26,6 +26,7 @@ import { MessagesComponent } from './components/navbar/horizontal/messages/messa
 import { ChangePasswordComponent } from './components/navbar/horizontal/change-password/change-password.component';
 import { ChangeProfileImageComponent } from './components/navbar/horizontal/change-profile-image/change-profile-image.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -36,6 +37,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [AnonymousGuardService]},
+  { path: 'RefreshComponent', component: PostsComponent, canActivate: [LoginGuardService]}, 
   { path: 'allPosts', component: PostsComponent, canActivate: [LoginGuardService], data: { viewOption: 'allPosts' } }, 
   { path: 'user/:username', component: UserProfileComponent, canActivate: [LoginGuardService],  data: { viewOption: 'user' } },
   { path: 'post/:id', component: PostsComponent, canActivate: [LoginGuardService], data: { viewOption: 'post' } },
@@ -68,6 +70,7 @@ const routes: Routes = [
     ChangePasswordComponent,
     ChangeProfileImageComponent,
     RegisterComponent,
+    SpinnerComponent,
 
   ],
     imports: [

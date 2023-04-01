@@ -6,6 +6,7 @@ import { PostService } from 'src/app/services/post/post.service';
 import { PostsActionsService } from 'src/app/services/posts-actions/posts-actions.service';
 import { MessagesUserProfileSharedService } from 'src/app/services/sharedMessagesUserProfile/messages-user-profile-shared.service';
 import {PostsComponent} from "../posts.component";
+import { LoaderService } from 'src/app/services/loader.service';
 
 
 
@@ -19,8 +20,8 @@ export class UserProfileComponent extends PostsActionsService implements OnInit 
   user:User =  {id: 0, username: '', image:null, followed: false};;
   image: any;
 
-  constructor(protected override route:ActivatedRoute, protected override getService: GetService, protected override postService: PostService, protected override router: Router, private messagesUserProfileSharedService : MessagesUserProfileSharedService){
-      super(postService, router, getService, route);
+  constructor(protected override route:ActivatedRoute, protected override loadingService: LoaderService, protected override getService: GetService, protected override postService: PostService, protected override router: Router, private messagesUserProfileSharedService : MessagesUserProfileSharedService){
+      super(postService, router, getService, route, loadingService);
   }
 
   override createImageFromBlob(image: Blob) {

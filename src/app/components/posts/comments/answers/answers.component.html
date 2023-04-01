@@ -15,7 +15,7 @@
             <small (click)="sendAnswerReactions(answer.reactions)" data-toggle="modal" data-target="#likesModal">{{answer.reactions.length}} likes</small>
           </div>
         </div>
-        <div *ngIf="answer.userId === userId" class="dropdown">
+        <div *ngIf="answer.userId === userId" class="dropdown me-3">
           <button class="btn btn-secondary dropdown-toggle"  type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: inherit; border-width: 0">
             <i class="material-icons" style="color: white; font-size: 20px; vertical-align: text-bottom"> more_horiz</i>
           </button>
@@ -23,7 +23,7 @@
             height: 10vh; text-align: center; background-color: #c5c5c5;">
 
             <a class="dropdown-item h-50 pt-2"  data-toggle="modal" data-target="#editModal" (click)="sendAnswer(answer)"><span>Edit comment</span></a>
-            <a class="dropdown-item h-50 pt-2"  (click)="removePost(answer.id); reload()"><span>Delete comment</span></a>
+            <a class="dropdown-item h-50 pt-2"  (click)="removePost(answer.id);"><span>Delete comment</span></a>
 
           </div>
         </div>

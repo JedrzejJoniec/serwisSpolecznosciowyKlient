@@ -1,3 +1,4 @@
+<app-spinner></app-spinner>
 <div class="container mt-5 mb-5 s" >
   <div class="row d-flex align-items-center justify-content-center" style="margin-top: 30px">
 
@@ -30,6 +31,9 @@
           </div>
       </li>
       
+    </div>
+    <div class="col-md-7 align-self-center" *ngIf="users.length === 0 && this.viewOption === 'search'"  style="margin-top: auto">
+      <p class="info" style="text-align: center"> No users found</p>
     </div>
     <div class="col-md-7 align-self-center" *ngIf="users.length === 0 && this.viewOption === 'followedUsers'"  style="margin-top: auto">
       <p class="info" style="text-align: center"> No followed users</p>

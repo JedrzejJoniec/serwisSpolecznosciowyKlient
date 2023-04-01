@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { LoaderService } from 'src/app/services/loader.service';
 import { PostService } from 'src/app/services/post/post.service';
 
 @Component({
@@ -7,12 +8,13 @@ import { PostService } from 'src/app/services/post/post.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent {
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private loadingService: LoaderService) {}
 
 
   @Input() image: any;
   @Input() bodyInEdit: any;
   @Input() postId: any;
+  @Input() ViewOption: any;
   textAreaText: any;
   imageToSend: any = null;
   
@@ -32,20 +34,23 @@ export class EditComponent {
     fileReader.readAsDataURL(image);
   }
 
-  edit(body: string) {
+  async edit(body: string) {
     console.log(this.image)
     console.log(this.imageToSend)
-    if((this.image === null && this.imageToSend !== undefined) || (this.image === null && this.imageToSend === undefined) || (this.image !== null && this.imageToSend !== undefined) ){
-  
-      this.postService.edit(body, this.postId, this.imageToSend);
+    if(this.bodyInEdit != body || this.imageToSend != null || this.image === null){
+      this.loadingService.setLoading(true);
+      let changeImage = true;
+      if (this.image != null && this.imageToSend === null){
+        changeImage = false;
+      }
+      const editStatus = await this.postService.edit(body, this.postId, this.imageToSend, changeImage);
+      if (editStatus.status === 200) {
+        this.loadingService.setLoading(false);
+        window.location.reload();
+      }
     }
 
     
-  }
-  async reload () {
-    const sleep = (ms: number | undefined) => new Promise(r => setTimeout(r, ms));
-    await sleep(500);
-    window.location.reload();
   }
 
 }

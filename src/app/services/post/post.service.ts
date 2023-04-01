@@ -22,7 +22,7 @@ export class PostService {
     this.token = localStorage.getItem("token");
   }
 
-  public edit(body:string, id:any, image:File) {
+  public edit(body:string, id:any, image:File, changeImage: boolean) {
 
     const formData = new FormData();
     formData.append('file', image);
@@ -32,7 +32,7 @@ export class PostService {
       token = "pusty";
     }
 
-    fetch(this.postsUrl + "/myPosts/post/" + id,{
+    return fetch(this.postsUrl + "/myPosts/post/" + id + "/" + changeImage,{
         headers:{
           Authorization: token
         },
@@ -41,6 +41,7 @@ export class PostService {
       }
     )
   }
+
 
   public changePassword(body:string) {
     let token = sessionStorage.getItem("token");
@@ -162,7 +163,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch(this.postsUrl + "/posts/file",{
+    return fetch(this.postsUrl + "/posts/file",{
       headers:{
         Authorization: token
       },
@@ -172,13 +173,7 @@ export class PostService {
     )
   }
   public addLike(id:any): Observable<any> {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token
-    });
-    let options = {
-      headers: reqHeader
-    };
+    console.log(this.postsUrl + "/post/" + id + "/reactions")
     return this.httpClient.post<any>(this.postsUrl + "/post/" + id + "/reactions", {});
   }
 
@@ -190,7 +185,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch(this.postsUrl +"/post/" + id + "/comments",{
+    return fetch(this.postsUrl +"/post/" + id + "/comments",{
       headers:{
         Authorization: token
       },
@@ -201,25 +196,12 @@ export class PostService {
   }
 
   public removeLike(id:any): Observable<any> {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token
-    });
-    let options = {
-      headers: reqHeader
-    };
+    console.log(this.postsUrl + "/post/" + id + "/reactions")
     return this.httpClient.delete<any>(this.postsUrl + "/post/" + id + "/reactions");
   }
 
   public removePost(id:any): Observable<any> {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token
-    });
-    let options = {
-      headers: reqHeader
-    };
-    return this.httpClient.delete<any>(this.postsUrl +"/myPosts/post/" + id);
+    return this.httpClient.delete<any>(this.postsUrl +"/myPosts/post/" + id, {observe: 'response'});
   }
 
   public deleteBlockedUserNotifications(blockedUser:string){
@@ -241,7 +223,7 @@ export class PostService {
     if ( token === null) {
       token = "pusty";
     }
-    fetch(this.chatUrl + "/deleteChat/" + blockedUser,{
+    return fetch(this.chatUrl + "/deleteChat/" + blockedUser,{
       headers:{
         Authorization: token
       },
@@ -251,14 +233,8 @@ export class PostService {
   }
 
   public followOrBlock(id:any, relation: string): Observable<any> {
-    let reqHeader = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token
-    });
-    let options = {
-      headers: reqHeader
-    };
-    return this.httpClient.post<any>(this.postsUrl +"/users/" + id, relation);
+
+    return this.httpClient.post<any>(this.postsUrl +"/users/" + id, relation, {observe: 'response'});
   }
 
 

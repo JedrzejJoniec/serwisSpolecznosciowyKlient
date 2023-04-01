@@ -9,7 +9,6 @@ import {PostsComponent} from "../posts.component";
 })
 export class AddPostComponent extends PostsComponent{
 
-
   choseImage(event: any) {
     let image = event.target.files[0];
     this.imageToSend = event.target.files.item(0);
@@ -20,8 +19,14 @@ export class AddPostComponent extends PostsComponent{
     fileReader.readAsDataURL(image);
   }
   
-  addPost(body:string) {
-    this.postService.addPost(body, this.imageToSend);
+  async addPost(body:string) {
+    this.loadingService.setLoading(true);
+    const addPostStatus =  await this.postService.addPost(body, this.imageToSend);
+    if (addPostStatus.status === 200) {
+      this.loadingService.setLoading(false);
+      window.location.reload()
+    }
+   
   }
  
 }

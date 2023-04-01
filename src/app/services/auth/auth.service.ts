@@ -20,12 +20,10 @@ export class AuthService {
   async login(username: any, password: any) {
     const fetchLogin =  await this.postService.login(username, password);
     if (fetchLogin.status === 403) {
-      console.log("BLAD")
       return "unsuccesful";
     }
     else {
      let token = await fetchLogin.text()
-     console.log(await token + "TOKEN")
      this._isLoggedIn$.next(true);
      sessionStorage.setItem("token", token);
      return "succesful";
