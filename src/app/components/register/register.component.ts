@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { PostService } from '../../services/post/post.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -22,13 +23,14 @@ export class RegisterComponent {
   });
 
 
-  constructor(private authService: AuthService, private router: Router, private postService: PostService) {
+  constructor(private authService: AuthService, private router: Router, private postService: PostService,  protected loadingService: LoaderService) {
   }
   async submitForm() {
     this.registerCompleted = false;
     this.errorEmptyFields = false;
     this.errorPassword = false;
     this.errorUsername = false;
+    this.loadingService.setLoading(true);
     if (this.formData.get('password')?.value === null || this.formData.get('passwordRepeat')?.value == null || this.formData.get('username')?.value == null) {
         this.errorEmptyFields = true;
     }
@@ -47,7 +49,7 @@ export class RegisterComponent {
     else {
       this.errorPassword = true;
     }
-
+    this.loadingService.setLoading(false);
   }
 
 }
