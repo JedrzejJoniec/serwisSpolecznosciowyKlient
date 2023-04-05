@@ -1,7 +1,7 @@
 # Serwis społecznościowy - klient
 
 SerwisSpołecznościowyKlient to projekt serwisu społecznościowego zrobiony za pomocą frameworka Angular. Prezentuje on interfejs graficzny pozwalający użytkownikom 
-na korzystanie z systemu. Jest on połączony z API napisanym za pomocą Javy i frameworka Spring boot
+na korzystanie z systemu. Jest on połączony z API napisanym za pomocą Javy i frameworka Spring boot. Aplikacja jest dostępna pod adresem https://myface.azurewebsites.net/ ale z powodu kosztów utrzymania na platformie Azure jest ona wyłączona (może zostac uruchomiona w celach prezentacyjnych).
 
 ## 
 
