@@ -1,27 +1,56 @@
-# Angularproject
+# Serwis społecznościowy - klient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+SerwisSpołecznościowyKlient to projekt serwisu społecznościowego zrobiony za pomocą frameworka Angular. Prezentuje on interfejs graficzny pozwalający użytkownikom 
+na korzystanie z systemu. Jest on połączony z API napisanym za pomocą Javy i frameworka Spring boot
 
-## Development server
+## 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Użytkownik po wejściu na adres musi się zalogować
 
-## Code scaffolding
+![alt text](Images/login.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Jeśli nie posiada konta musi się zarejestrować
 
-## Build
+![alt text](Images/register.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Po pomyślnym zalogowaniu przenosi się na stronę główną gdzie może dodawać swoje posty. Po prawej stronie widoczne są zakładki do których może przejść po kliknięciu w nie
+![alt text](Images/strona.png)
 
-## Running unit tests
+Po rozwinięciu przycisku menu może zmienić swoje zdjęcie profilowe/hasło, wyświetlić listę zablokowanych użytkowników, a także się wylogować
+![alt text](Images/ustawienia.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Może wyświetlić komentarze pod postem i odpowiedzi na nie, a także może napisać swój komentarz/odpowiedź
+![alt text](Images/komentarze.png)
+Może wyświetlić listę osób które polubiły post/komentarz/odpowiedź
+![alt text](Images/reakcje.png)
+Jeśli jest autorem posta to może go edytować lub usunąć
+![alt text](Images/menu.png)
 
-## Running end-to-end tests
+Okno edycji posta
+![alt text](Images/edycja.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Może wyszukać użytkowników/posty
+![alt text](Images/szukaj.png)
 
-## Further help
+Może wejść na profil danego użytkownika gdzie może wysłać mu wiadomość, zaobserwować go lub zablokować
+![alt text](Images/profil.png)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Otrzyma powiadomienie jeśli ktoś polubi/skomentuje jego post/komentarz/odpowiedź
+![alt text](Images/powiadomienie.png)
+
+Może wyświetlić listę powiadomień, a po kliknięciu w nie zostanie przeniosiony do posta do którego się ono odnosi
+![alt text](Images/powiadomienie2.png)
+
+Otrzyma również powiadomienie gdy ktoś do niego napisze
+![alt text](Images/chat.png)
+
+Może wyświetlić listę powiadomień, a po kliknięciu w nie zostanie otwarte okno chatu z użytkownikiem który do niego napisał
+![alt text](Images/chat2.png)
+
+Może wymieniać z nim wiadomości w czasie rzeczywistym
+![alt text](Images/chat3.png)
+
+
+
+
+
